@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.byau.dao.CourseKindMapper">
+	<resultMap id="BaseResultMap" type="CourseKind">
+		<id column="kind_id" property="kindId" jdbcType="VARCHAR" />
+		<result column="kind_name" property="kindName" jdbcType="VARCHAR" />
+		<result column="kind_remark" property="kindRemark" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BaseResultMap2" type="CourseKind">
+		<id column="kind_id" property="kindId" jdbcType="VARCHAR" />
+		<result column="kind_name" property="kindName" jdbcType="VARCHAR" />
+		<result column="kind_remark" property="kindRemark" jdbcType="VARCHAR" />
+		<collection property="courseList" ofType="Course">
+			<id column="course_id" property="courseId" jdbcType="VARCHAR" />
+			<result column="course_name" property="courseName" jdbcType="VARCHAR" />
+			<result column="coursekind_id" property="courseKindId"
+				jdbcType="VARCHAR" />
+			<result column="course_score" property="courseScore" jdbcType="VARCHAR" />
+			<result column="course_hour" property="courseHour" jdbcType="VARCHAR" />
+			<result column="course_remark" property="courseRemark" jdbcType="VARCHAR" />
+		</collection>
+
+
+	</resultMap>
+
+	<select id="getByKindId" resultMap="BaseResultMap2"
+		parameterType="String">
+		select c.*,ck.kind_name,ck.kind_remark
+
+		from coursekind ck,course c
+		where ck.kind_id=c.coursekind_id and ck.kind_id=#{kind_id};
+	</select>
+
+
+
+	<sql id="Base_Column_List">
+		kind_id, kind_name, kind_remark
+	</sql>
+	
+
+	<select id="list" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from coursekind
+
+	</select>
+	
+	
+</mapper>
