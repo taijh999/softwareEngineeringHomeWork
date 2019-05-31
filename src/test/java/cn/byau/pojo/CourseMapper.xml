@@ -139,7 +139,7 @@
 			#{course.courseRemark,jdbcType=VARCHAR})
 		</foreach>
 	</insert>
-	<delete id="deleteBatch" parameterType="String[]">
+	<delete id="deleteBatch" parameterType="String">
         delete from course where course_id in
         <foreach item="courseId" collection="array" open="(" separator="," close=")">
             #{courseId}

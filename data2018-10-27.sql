@@ -18,8 +18,8 @@
 -- Create schema zuopin1013
 --
 
-CREATE DATABASE IF NOT EXISTS zuopin1013;
-USE zuopin1013;
+CREATE DATABASE IF NOT EXISTS sehomework2019;
+USE sehomework2019;;
 
 --
 -- Definition of table `course`
