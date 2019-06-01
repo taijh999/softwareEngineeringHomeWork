@@ -65,6 +65,6 @@ public interface CourseMapper {
 	 * @param ids为主键构成的数组
 	 * @return
 	 */
-	int deleteBatch(String ids[]);
+	int deleteBatch(String[] ids);
 
 }

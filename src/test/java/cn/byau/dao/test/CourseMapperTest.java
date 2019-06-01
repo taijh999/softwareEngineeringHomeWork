@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -80,6 +81,7 @@ public class CourseMapperTest {
 	@Test
 	public void testDeleteBatch() {
 		String courseIds[] = new String[] {"1061,1020"};
+		//List<String> courseIds1=Arrays.asList(courseIds);
 		int x = courseDao.deleteBatch(courseIds);
 		assertEquals(2, x);
 	}
