@@ -53,10 +53,7 @@
 		concat('%',#{value},'%')
 	</select>
 
-<!-- 	<delete id="delete"> -->
-<!-- 		delete from course -->
-<!-- 		where course_id = #{courseId,jdbcType=VARCHAR} -->
-<!-- 	</delete> -->
+
 	
 	<insert id="save" parameterType="Course">
 		insert into course
@@ -142,7 +139,7 @@
 	<delete id="deleteBatch" parameterType="String">
         delete from course where course_id in
         <foreach item="courseId" collection="array" open="(" separator="," close=")">
-            #{courseId} 
+            #{courseId}
         </foreach>
     </delete>
 	

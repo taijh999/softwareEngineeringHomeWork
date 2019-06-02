@@ -80,7 +80,7 @@
 								tr.remove();
 								//window.location.reload();
 							} else {
-								alert("删除客户失败！");
+								alert("删除课程失败！");
 								//window.location.reload();
 							}
 						}
@@ -155,16 +155,15 @@
 		<nav class="navbar navbar-default navbar-fixed-bottom">
 			<ul class="pagination">
 				<li><a
-					href="?courseId=<c:out value="${courseId}"/>&pageNo=<c:out value="${pageNo-1 }"/>"
+					href="?courseId=${courseId}&pageNum=${pageInfo.pageNum-1 }"
 					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 				</a></li>
 				<c:forEach var="i" begin="1" end="${pageInfo.pages}" step="1">
 					<li><a
-						href="?courseId=<c:out value="${courseId}"/>&pageNo=<c:out value="${i}"/>"><c:out
-								value="${i}" /></a></li>
+						href="?courseId=${courseId}&pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<li><a
-					href="?courseId=<c:out value="${courseId}"/>&pageNo=<c:out value="${pageNo+1 }"/>"
+					href="?courseId=${courseId}&pageNum=${pageInfo.pageNum+1 }"
 					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>

@@ -1,8 +1,5 @@
 package cn.byau.service;
 
-import cn.byau.dao.CourseMapper;
-import cn.byau.pojo.Course;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -11,11 +8,10 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -27,7 +23,14 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import cn.byau.dao.CourseMapper;
+import cn.byau.pojo.Course;
 
 /**
  * Created by tjh on 2017/5/13.
@@ -52,6 +55,14 @@ public class CourseService {
 	public List<Course> listByPage(String courseId) {
 		return courseDao.listByPage(courseId);
 	}
+	
+	public PageInfo<Course> listByPage(Integer pageNum, Integer pageSize, String courseId) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Course> list = courseDao.listByPage(courseId);
+		PageInfo<Course> pageInfo = new PageInfo<>(list);
+		return pageInfo;
+	}
+
 
 	public void save(Course course) {
 		courseDao.save(course);

@@ -74,7 +74,7 @@ public class CourseController {
 	 */
 	@RequestMapping("/listByPage")
 	public ModelAndView listByPage(
-			@RequestParam(defaultValue="1",required=false) Integer pageNo, 
+			@RequestParam(defaultValue="1",required=false) Integer pageNum, 
 			@RequestParam(defaultValue="5",required=false) Integer pageSize,
 			@RequestParam(defaultValue="",required=false)  String courseId, 
 			HttpServletRequest request,
@@ -89,9 +89,8 @@ public class CourseController {
         
 		
 		
-		PageHelper.startPage(pageNo, pageSize);
-        List<Course> courseList = courseService.listByPage(courseId);//获取所有用户信息
-        PageInfo<Course> pageInfo=new PageInfo<Course>(courseList);
+		
+        PageInfo<Course> pageInfo=courseService.listByPage(pageNum, pageSize, courseId);
         request.setAttribute("pageInfo", pageInfo);
 		
 		request.setAttribute("courseId", courseId);
