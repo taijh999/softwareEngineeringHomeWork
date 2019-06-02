@@ -76,7 +76,7 @@ public class CourseMapperTest {
 		int x = courseDao.insertBatch(courseList);
 		assertEquals(2, x);
 	}
-
+    //deleteBatch方法测试时，结果总是不正确，可能是系统bug
 	
 
 }
