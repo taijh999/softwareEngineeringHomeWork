@@ -22,7 +22,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 		<!-- 指定数据源 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 指定映射文件的位置, -->
-		<property name="mapperLocations" value="classpath:**/cn/byau/pojo/*Mapper.xml"></property>
+		<property name="mapperLocations" value="classpath*:**/cn/byau/pojo/*Mapper.xml"></property>
 		<!-- 给包中的类注册别名，可以直接使用类名 -->
 		<property name="typeAliasesPackage" value="cn.byau.pojo"></property>
 		<property name="configLocation" value="classpath:config/mybatis-config.xml"/>

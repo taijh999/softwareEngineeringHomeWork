@@ -37,7 +37,7 @@
                     <th>分类编号</th>
                     <th>分类名称</th>
                     <th>说明</th>
-                    <th>操作</th>
+                   
                 </tr>
 
                 <c:forEach items="${list}" var ="courseKind" varStatus="v">
@@ -45,7 +45,7 @@
                         <td>${courseKind.kindId}</td>
                         <td>${courseKind.kindName}</td>
                         <td>${courseKind.kindRemark}</td>
-                        <td><a href="${pageContext.request.contextPath}/courseKind/getByKindId.action?kindId=${courseKind.kindId}">查看课程</a></td>
+                       
                     </tr>
                 </c:forEach>
             </table>

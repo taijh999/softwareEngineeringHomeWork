@@ -50,7 +50,10 @@ public class CourseKindController {
 	@RequestMapping("/getDataGrid")
 	// 浏览器直接测试 /testJson13?page=1&rows=2 这种形式
 		public void datagrid(Integer page, Integer rows, HttpServletResponse response) {
-			PageInfo<CourseKind> pageInfo=courseKindService.listByPage(page, rows);
+		response.setHeader("Access-Control-Allow-Origin", "*");   //请求跨域
+        response.setContentType("text/json;charset=UTF-8");
+		
+		PageInfo<CourseKind> pageInfo=courseKindService.listByPage(page, rows);
 			long total=pageInfo.getTotal();
 			ObjectMapper mapper = new ObjectMapper();
 			// 返回JSON格式的响应
@@ -69,11 +72,15 @@ public class CourseKindController {
 		
 		
 		Result result = new Result();
+		if(courseKindService.getByKindId(courseKind.getKindId())==null){
 		try{
 			courseKindService.save(courseKind);
      		result.setMsg("OK");
 		}catch(Exception e){
 	        result.setMsg("FAIL"); 		
+		}
+		}else {
+			 result.setMsg("主键重复");
 		}
 		return result;
 	
@@ -98,10 +105,10 @@ public class CourseKindController {
 
 	@RequestMapping("/delete")
 	@ResponseBody
-	public Result delete(String courseId) {
+	public Result delete(String courseKindId) {
 		Result result = new Result();
 		try{
-			courseKindService.delete(courseId);
+			courseKindService.delete(courseKindId);
      		result.setMsg("OK");
 		}catch(Exception e){
 	        result.setMsg("FAIL"); 		

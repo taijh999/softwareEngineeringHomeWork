@@ -48,8 +48,8 @@
 	<select id="listByPage" resultMap="hResultMap">
 		select c.*,ck.kind_name
 
-		from coursekind ck,course c
-		where ck.kind_id=c.coursekind_id and course_id like
+		FROM course c LEFT JOIN  coursekind ck
+		ON ck.kind_id=c.coursekind_id WHERE course_id lIKE
 		concat('%',#{value},'%')
 	</select>
 

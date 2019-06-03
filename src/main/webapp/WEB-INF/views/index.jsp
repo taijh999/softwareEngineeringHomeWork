@@ -41,6 +41,10 @@
                                 <li><a href="${pageContext.request.contextPath}/courseKind/list.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>显示课程分类</a>
                         </li>
+                        
+                        <li><a href="${pageContext.request.contextPath}/EasyUICRUD/list.jsp" target="menuFrame">
+                                <i class="glyph-icon icon-chevron-right"></i>按JqueryUI显示分类</a>
+                        </li>
 
 
 

@@ -21,7 +21,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<context:component-scan base-package="cn.byau.controller"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
     <!-- 开启注解支持MVC @RequestBody和@ResponseBody 使用mvc:annotation-driven -->
-   
+    <mvc:annotation-driven/>
     
     
     <!-- 视图解析器 -->

@@ -128,10 +128,11 @@
 				<th><input type="checkbox" onclick="checkAll()" /></th>
 				<th>编号</th>
 				<th>名称</th>
-				<th>类别</th>
+				
 				<th>学分</th>
 				<th>课时</th>
 				<th>附加說明</th>
+				<th>类别</th>
 			</tr>
 
 			<c:forEach items="${pageInfo.list}" var="course" varStatus="v">
@@ -141,11 +142,11 @@
 
 					<td>${course.courseId }</td>
 					<td>${course.courseName}</td>
-					<td>${course.courseKind.kindName}</td>
+					
 					<td>${course.courseScore}</td>
 					<td>${course.courseHour}</td>
 					<td>${course.courseRemark}</td>
-
+                    <td>${course.courseKind.kindName}</td> 
 
 
 				</tr>
