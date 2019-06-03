@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageHelper;
+
 import com.github.pagehelper.PageInfo;
 
 import cn.byau.pojo.Course;
 import cn.byau.pojo.CourseKind;
-import cn.byau.pojo.LogInfo;
+
 import cn.byau.service.CourseKindService;
 import cn.byau.service.CourseService;
 import cn.byau.util.Result;

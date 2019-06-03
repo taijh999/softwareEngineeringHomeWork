@@ -1,14 +1,25 @@
 package cn.byau.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.IOException;
 
-import cn.byau.service.CourseKindService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageInfo;
+
+import cn.byau.pojo.Course;
+import cn.byau.pojo.CourseKind;
+import cn.byau.pojo.User;
+import cn.byau.service.CourseKindService;
+import cn.byau.util.Result;
 
 /**
  * Created by tjh on 2017/5/13.
@@ -35,5 +46,66 @@ public class CourseKindController {
 		mv.addObject("courseKind", courseKindService.getByKindId(kindId));
 		
 		return mv;
+	}
+	@RequestMapping("/getDataGrid")
+	// 浏览器直接测试 /testJson13?page=1&rows=2 这种形式
+		public void datagrid(Integer page, Integer rows, HttpServletResponse response) {
+			PageInfo<CourseKind> pageInfo=courseKindService.listByPage(page, rows);
+			long total=pageInfo.getTotal();
+			ObjectMapper mapper = new ObjectMapper();
+			// 返回JSON格式的响应
+			try {
+				String json = "{\"total\":"+total+",\"rows\":" + mapper.writeValueAsString(pageInfo.getList())  + "}";
+				response.getWriter().write(json);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}	
+	@RequestMapping("/save")
+	@ResponseBody
+	public Result save(CourseKind courseKind) {
+		
+		
+		Result result = new Result();
+		try{
+			courseKindService.save(courseKind);
+     		result.setMsg("OK");
+		}catch(Exception e){
+	        result.setMsg("FAIL"); 		
+		}
+		return result;
+	
+
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public Result update(CourseKind courseKind) {
+		Result result = new Result();
+		try{
+			courseKindService.update(courseKind);
+     		result.setMsg("OK");
+		}catch(Exception e){
+	        result.setMsg("FAIL"); 		
+		}
+		return result;
+		
+
+	}
+	
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Result delete(String courseId) {
+		Result result = new Result();
+		try{
+			courseKindService.delete(courseId);
+     		result.setMsg("OK");
+		}catch(Exception e){
+	        result.setMsg("FAIL"); 		
+		}
+		return result;
 	}
 }
