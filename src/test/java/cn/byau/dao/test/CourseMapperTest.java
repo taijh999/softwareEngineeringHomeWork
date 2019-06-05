@@ -43,6 +43,9 @@ public class CourseMapperTest {
 	public void testGetById() {
 		Course course=courseDao.getById("1010");
 		assertNotNull(course);
+		assertEquals("java1", course.getCourseName());
+		assertEquals("课程介绍1", course.getCourseRemark());
+		
 	}
 
 	@Test
@@ -66,6 +69,8 @@ public class CourseMapperTest {
 		List<Course> result = courseDao.list();
 		int size = result.size();
 		Assert.assertNotSame(0, size);
+	
+		
 	}
 
 	@Test

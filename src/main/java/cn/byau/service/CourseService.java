@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,11 +13,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -55,14 +59,13 @@ public class CourseService {
 	public List<Course> listByPage(String courseId) {
 		return courseDao.listByPage(courseId);
 	}
-	
+
 	public PageInfo<Course> listByPage(Integer pageNum, Integer pageSize, String courseId) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Course> list = courseDao.listByPage(courseId);
 		PageInfo<Course> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}
-
 
 	public void save(Course course) {
 		courseDao.save(course);
@@ -75,8 +78,6 @@ public class CourseService {
 	public void update(Course course) {
 		courseDao.update(course);
 	}
-
-	
 
 	public void deleteBatch(String ids[]) {
 		courseDao.deleteBatch(ids);
@@ -102,25 +103,62 @@ public class CourseService {
 
 	public List<Course> importXls(File file) {
 		List<Course> courseList = new ArrayList<Course>();
-
+		Workbook wb = null;
 		InputStream is = null;
-		HSSFWorkbook hWorkbook = null;
+		// HSSFWorkbook hWorkbook = null;
+		String fileName = file.getName();
 		try {
 			is = new FileInputStream(file);
-			hWorkbook = new HSSFWorkbook(is);
-			HSSFSheet hSheet = hWorkbook.getSheetAt(0);
+			if (fileName.endsWith(".xls")) {// HSSFWorkbook，对应xls格式的Excel文档
+				wb = new HSSFWorkbook(is);
+			} else if (fileName.endsWith(".xlsx")) {// XSSFWorkbook，对应xlsx格式的Excel文档；
 
-			if (null != hSheet) {
-				for (int i = 1; i < hSheet.getPhysicalNumberOfRows(); i++) {
+				wb = new XSSFWorkbook(is);
+			}
+			
+			Sheet sheet = wb.getSheetAt(0);
+
+			if (null != sheet) {
+				for (Row row : sheet) {
+					if (row.getRowNum() < 1) {
+						continue;
+					}
+
 					Course course = new Course();
-					HSSFRow hRow = hSheet.getRow(i);
-					course.setCourseId(hRow.getCell(0).toString());
-					course.setCourseName(hRow.getCell(1).toString());
-					course.setCourseKindId(hRow.getCell(2).toString());
-					course.setCourseScore(hRow.getCell(3).toString());
-					course.setCourseHour(hRow.getCell(4).toString());
-					course.setCourseRemark(hRow.getCell(5).toString());
+					for (int j = 0; j <= 5; j++) {
+						Cell cell = row.getCell(j);
+						String value = getCellValue(cell);
+						switch (j) {
+						case 0:
+							course.setCourseId(value);
+							break;
+						case 1:
+							course.setCourseName(value);
+							break;
+						case 2:
+							course.setCourseKindId(value);
+							break;
 
+						case 3:
+							course.setCourseScore(value);
+							break;
+						case 4:
+							course.setCourseHour(value);
+							break;
+						case 5:
+							course.setCourseRemark(value);
+							break;
+
+						default:
+							break;
+						}
+//					course.setCourseId(row.getCell(0).toString());
+//					course.setCourseName(row.getCell(1).toString());
+//					course.setCourseKindId(row.getCell(2).toString());
+//					course.setCourseScore(row.getCell(3).toString());
+//					course.setCourseHour(row.getCell(4).toString());
+//					course.setCourseRemark(row.getCell(5).toString());
+					}
 					courseList.add(course);
 				}
 			}
@@ -135,9 +173,9 @@ public class CourseService {
 				}
 			}
 
-			if (null != hWorkbook) {
+			if (null != wb) {
 				try {
-					hWorkbook.close();
+					wb.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -205,7 +243,6 @@ public class CourseService {
 		xSheet.setColumnWidth(3, 10 * 256);
 		xSheet.setColumnWidth(4, 10 * 256);
 		xSheet.setColumnWidth(5, 15 * 256);
-		
 
 		CellStyle cs = xWorkbook.createCellStyle();
 		// 设置水平垂直居中
@@ -232,21 +269,19 @@ public class CourseService {
 		XSSFCell xCell2 = xRow0.createCell(2);
 		xCell2.setCellStyle(cs);
 		xCell2.setCellValue("分类编号");
-		
+
 		XSSFCell xCell3 = xRow0.createCell(3);
 		xCell3.setCellStyle(cs);
 		xCell3.setCellValue("学分");
-		
+
 		XSSFCell xCell4 = xRow0.createCell(4);
 		xCell4.setCellStyle(cs);
 		xCell4.setCellValue("学时");
-		
+
 		XSSFCell xCell5 = xRow0.createCell(5);
 		xCell5.setCellStyle(cs);
 		xCell5.setCellValue("附加说明");
-		
-		
-		
+
 	}
 
 	/**
@@ -277,7 +312,7 @@ public class CourseService {
 					case 2:
 						xCell.setCellValue(course.getCourseKindId());
 						break;
-						
+
 					case 3:
 						xCell.setCellValue(course.getCourseScore());
 						break;
@@ -287,13 +322,42 @@ public class CourseService {
 					case 5:
 						xCell.setCellValue(course.getCourseRemark());
 						break;
-						
-						
+
 					default:
 						break;
 					}
 				}
 			}
 		}
+	}
+
+	private String getCellValue(Cell cell) {
+		String cellValue = "";
+		//DecimalFormat df = new DecimalFormat("#");
+		switch (cell.getCellType()) {
+		case Cell.CELL_TYPE_STRING:
+			cellValue = cell.getRichStringCellValue().getString().trim();
+			break;
+		case Cell.CELL_TYPE_NUMERIC:
+			if (DateUtil.isCellDateFormatted(cell)) {
+				Date tempValue = cell.getDateCellValue();
+				SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+				cellValue = simpleFormat.format(tempValue);
+			} else {
+				cellValue = String.valueOf(cell.getNumericCellValue());
+			}
+			//cellValue = df.format(cell.getNumericCellValue()).toString();
+			break;
+		case Cell.CELL_TYPE_BOOLEAN:
+			cellValue = String.valueOf(cell.getBooleanCellValue()).trim();
+			break;
+		case Cell.CELL_TYPE_FORMULA:
+			cellValue = cell.getCellFormula();
+			break;
+		default:
+			cellValue = "";
+			break;
+		}
+		return cellValue;
 	}
 }

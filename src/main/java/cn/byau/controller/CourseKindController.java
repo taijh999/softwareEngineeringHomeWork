@@ -48,7 +48,7 @@ public class CourseKindController {
 		return mv;
 	}
 	@RequestMapping("/getDataGrid")
-	// 浏览器直接测试 /testJson13?page=1&rows=2 这种形式
+	// 浏览器直接测试 /getDataGrid?page=1&rows=2 这种形式
 		public void datagrid(Integer page, Integer rows, HttpServletResponse response) {
 		response.setHeader("Access-Control-Allow-Origin", "*");   //请求跨域
         response.setContentType("text/json;charset=UTF-8");

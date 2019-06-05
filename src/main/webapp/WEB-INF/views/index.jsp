@@ -32,11 +32,9 @@
         <div class="layout_left_menu">
             <ul id="menu">
                 <li class="childUlLi">
-                    <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程管理</a>
+                    <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程分类管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/course/listByPage.action" target="menuFrame">
-                                <i class="glyph-icon icon-chevron-right"></i>显示全部记录</a>
-                        </li>
+                        
                                 
                                 <li><a href="${pageContext.request.contextPath}/courseKind/list.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>显示课程分类</a>
@@ -45,6 +43,23 @@
                         <li><a href="${pageContext.request.contextPath}/EasyUICRUD/list.jsp" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>按JqueryUI显示分类</a>
                         </li>
+
+
+
+
+
+
+                    </ul>
+                </li>
+                
+                 <li class="childUlLi">
+                    <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程管理</a>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/course/listByPage.action" target="menuFrame">
+                                <i class="glyph-icon icon-chevron-right"></i>显示全部记录</a>
+                        </li>
+                                
+                               
 
 
 

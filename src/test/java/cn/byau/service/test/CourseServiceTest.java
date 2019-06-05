@@ -8,6 +8,7 @@ package cn.byau.service.test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.byau.dao.CourseMapper;
+import cn.byau.pojo.Course;
 import cn.byau.service.CourseService;
 
 /** 声明用的是Spring的测试类 **/
@@ -42,6 +44,8 @@ public class CourseServiceTest {
   
     @Test 
     public void testImportxls() {
+    	List<Course> list=courseService.importXls(new File("e:\\import.xls"));
+    	System.out.println(list);
    int x=courseService.importXls(new File("e:\\import.xls")).size();
    assertEquals(10, x);
     }

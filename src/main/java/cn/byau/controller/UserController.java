@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import cn.byau.pojo.User;
 import cn.byau.service.LogInfoService;
 import cn.byau.service.UserService;
+import cn.byau.util.CommonUtils;
 import cn.byau.util.Result;
 
 @Controller
@@ -39,20 +40,34 @@ public class UserController {
 
 		map.put("userName", userName);
 		map.put("password", password);
-
+        String r1=""; 
 		User user = userService.getUserByUserNameAndPassword(map);
-		if (user == null) {
-			session.setAttribute("msg", "用户名或密码错误");
-			return "redirect:loginPage.action";
-			// response.sendRedirect("jsp/index.jsp");
-		} else {
-			logInfoService.save(user.getUserId());
-
+		if (user != null) {
+		if (user.getRoleId().equals(CommonUtils.ADMIN_ROLE)) {
 			session.setAttribute("user", user);
-			return "redirect:index.action";
+			session.setAttribute("loginFlag", "adminLogin");
+
+			r1= "redirect:admin/index.action";
+		} else if (user.getRoleId().equals(CommonUtils.USER_ROlE)){
+			session.setAttribute("user", user);
+			session.setAttribute("loginFlag", "userLogin");
+		    
+			r1 ="redirect:index.action";
+		}
+		}else {
+			 //session.setAttribute("msg", "用户名或密码错误");
+			r1="redirect:loginPage.action";
+		}
+		
+		
+		   
+			return r1;
+			// response.sendRedirect("jsp/index.jsp");
+		
+			
 		}
 
-	}
+
 
 	@RequestMapping("/updatePassword")
 	@ResponseBody
@@ -118,47 +133,7 @@ public class UserController {
 			
 	}
 	
-//	public String handleFormUpload(@RequestParam("image") 
-//	MultipartFile uploadfile, HttpServletRequest request,
-//	@RequestParam("userId")
-//	Integer userId,String userName) {
-//		// 判断所上传文件是否存在
-//		if (!uploadfile.isEmpty()) {
-//			// 得到上传参数名
-//			// System.out.println(uploadfile.getName());
-//			// 获取上传文件的原始名称
-//
-//			String originalFilename = uploadfile.getOriginalFilename();
-//			String extFileName=originalFilename.substring(originalFilename.lastIndexOf("."));
-//			System.out.println(originalFilename);
-//			// 设置上传文件的保存地址目录
-//			String dirPath = request.getServletContext().getRealPath("/upload/");
-//			//System.out.println(dirPath); 
-//			// 使用UUID重新命名上传的文件名称(uuid_原始文件名称)
-//			String newFilename = UUID.randomUUID()+extFileName;
-//			System.out.println(dirPath+newFilename); 
-//			User user=new User();
-//			user.setUserId(userId);
-//			user.setUserName(userName);
-//			user.setImage("upload/"+newFilename);
-//			System.out.println(user); 
-//			
-//			try {
-//				// 使用MultipartFile接口的方法完成文件上传到指定位置
-//				uploadfile.transferTo(new File(dirPath + newFilename));
-//				userService.update(user);
-//				request.setAttribute("uploadFilePath", dirPath + newFilename);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				return "uploaddemo/error.jsp";
-//			}
-//
-//			// 跳转到成功页面
-//			return "uploaddemo/success.jsp";
-//		} else {
-//			return "uploaddemo/error.jsp";
-//		}
-//	}
+
 	public Result update(User user) {
 		Result result = new Result();
 
@@ -215,7 +190,7 @@ public class UserController {
 		return "redirect:loginPage.action";
 	}
 
-	@RequestMapping(value = "/index")
+	@RequestMapping(value = "/admin/index")
 	public String index(HttpSession session) {
 			return "/WEB-INF/views/index.jsp";
 	}
