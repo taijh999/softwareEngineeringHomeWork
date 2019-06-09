@@ -24,14 +24,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		String loginFlag = "";
 		loginFlag = (String) session.getAttribute("loginFlag");
-		if (requestURI.indexOf("/login.action") >= 0 || requestURI.indexOf("/loginPage.action") >= 0) {
+		if (requestURI.indexOf("/login.action") >= 0 || requestURI.indexOf("/toLogin.action") >= 0) {
 			return true;
 		} else if ("adminLogin".equals(loginFlag) && requestURI.startsWith(path + "/admin")
 				|| "userLogin".equals(loginFlag) && requestURI.startsWith(path + "/user")) {
 			return true;
 		} else {
 			request.setAttribute("msg", "请先登录");
-			response.sendRedirect(path + "/user/loginPage.action");// 重定向
+			response.sendRedirect(path + "/login/toLogin.action");// 重定向
 			return false;
 		}
 

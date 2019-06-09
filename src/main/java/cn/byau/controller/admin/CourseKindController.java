@@ -1,4 +1,4 @@
-package cn.byau.controller;
+package cn.byau.controller.admin;
 
 import java.io.IOException;
 

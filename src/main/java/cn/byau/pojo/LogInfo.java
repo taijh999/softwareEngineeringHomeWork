@@ -1,6 +1,6 @@
 package cn.byau.pojo;
 
-import java.util.Date;
+
 
 public class LogInfo {
     private Integer logId;
@@ -10,7 +10,7 @@ public class LogInfo {
     private String userId;
 
     private String loginTime;
-    private User user;
+    private String userName;
 	public Integer getLogId() {
 		return logId;
 	}
@@ -29,12 +29,13 @@ public class LogInfo {
 	public void setLoginTime(String loginTime) {
 		this.loginTime = loginTime;
 	}
-	public User getUser() {
-		return user;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+	
 
     
 

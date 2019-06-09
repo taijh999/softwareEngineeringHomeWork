@@ -87,7 +87,7 @@
 
     <welcome-file-list>
     <welcome-file>
-        /user/loginPage.action
+        login.jsp
     </welcome-file>
         
     </welcome-file-list>

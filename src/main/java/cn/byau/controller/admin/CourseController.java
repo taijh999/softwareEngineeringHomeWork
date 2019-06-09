@@ -1,9 +1,6 @@
-package cn.byau.controller;
+package cn.byau.controller.admin;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +26,7 @@ import cn.byau.util.Result;
  * Created by tjh on 2017/5/13.
  */
 @Controller
-@RequestMapping("/course")
+@RequestMapping("/admin/course")
 public class CourseController {
 
 	@Resource(name = "CourseService")
@@ -43,11 +40,11 @@ public class CourseController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/savePage")
+	@RequestMapping("/toSave")
 	public String savePage(HttpServletRequest request) {
 		List<CourseKind> list = courseKindService.list();
 		request.setAttribute("list", list);
-		return "/WEB-INF/views/course/save.jsp";
+		return "/admin/course/save.jsp";
 	}
 
 	/**
@@ -56,9 +53,9 @@ public class CourseController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/uploadPage")
+	@RequestMapping("/toUpload")
 	public String upload() {
-		return "/WEB-INF/views/course/upload.jsp";
+		return "/admin/course/upload.jsp";
 	}
 
 	/**
@@ -73,14 +70,14 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("/listByPage")
-	public ModelAndView listByPage(
+	public String listByPage(
 			@RequestParam(defaultValue="1",required=false) Integer pageNum, 
 			@RequestParam(defaultValue="5",required=false) Integer pageSize,
 			@RequestParam(defaultValue="",required=false)  String courseId, 
 			HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/WEB-INF/views/course/list.jsp");
+		//ModelAndView mv = new ModelAndView();
+		//mv.setViewName("/admin/course/list.jsp");
 
 		
 
@@ -94,8 +91,8 @@ public class CourseController {
         request.setAttribute("pageInfo", pageInfo);
 		
 		request.setAttribute("courseId", courseId);
-		
-		return mv;
+		//return mv;
+		return "/admin/course/list.jsp";
 
 	}
 
@@ -131,12 +128,12 @@ public class CourseController {
 	 * @return
 	 */
 
-	@RequestMapping("/updatePage")
+	@RequestMapping("/toUpdate")
 	public ModelAndView updatePage(HttpServletRequest request) {
 		String courseId = request.getParameter("courseId");
 		Course course = courseService.getById(courseId);
 
-		ModelAndView mv = new ModelAndView("/WEB-INF/views/course/update.jsp");
+		ModelAndView mv = new ModelAndView("/admin/course/update.jsp");
 		mv.addObject("course", course);
 
 		List<CourseKind> list = courseKindService.list();
@@ -189,7 +186,7 @@ public class CourseController {
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("type", "export");
-		mv.setViewName("/WEB-INF/views/course/success.jsp");
+		mv.setViewName("/admin/course/success.jsp");
 		return mv;
 	}
 }
