@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	function updateCourse() {
-		$.post("${pageContext.request.contextPath}/course/update.action",
+		$.post("${pageContext.request.contextPath}/admin/course/update.action",
 		$("#update_course_form").serialize(),function(data){
 		        if(data.msg =="OK"){
 		            alert("课程修改成功！");
@@ -115,7 +115,7 @@
 		<div class="row">
 			<div class="col-sm-10" align="center">
 				<input type="button" value="确认修改" class="btn btn-success" onclick="updateCourse()"/> <a
-					href="${pageContext.request.contextPath}/course/listByPage.action" class="btn btn-danger">返回上一级</a>
+					href="${pageContext.request.contextPath}/admin/course/listByPage.action" class="btn btn-danger">返回上一级</a>
 			</div>
 		</div>
 	</form>

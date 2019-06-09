@@ -36,7 +36,7 @@
 //             })
 //         })
 function createCourse() {
-	$.post("${pageContext.request.contextPath}/course/save.action",
+	$.post("${pageContext.request.contextPath}/admin/course/save.action",
 	$("#new_course_form").serialize(),function(data){
 	        if(data.msg =="OK"){
 	            alert("课程创建成功！");
@@ -135,7 +135,7 @@ function createCourse() {
                     <input type="button" value="添加课程" class="btn btn-success"  onclick="createCourse()"/> 
                     
                     <a
-                        href="${pageContext.request.contextPath}/course/listByPage.action" class="btn btn-danger">返回上一级</a>
+                        href="${pageContext.request.contextPath}/admin/course/listByPage.action" class="btn btn-danger">返回上一级</a>
                 </div>
             </div>
         </form>

@@ -83,22 +83,39 @@ public class CourseService {
 		courseDao.deleteBatch(ids);
 	}
 
-	public void importFile(MultipartFile mFile, String rootPath) {
+	public String importFile(MultipartFile mFile, String rootPath) {
 		List<Course> courseList = new ArrayList<Course>();
 
 		String fileName = mFile.getOriginalFilename();
 		String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-		String ym = new SimpleDateFormat("yyyy-MM").format(new Date());
+		String ym = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		String filePath = ym + fileName;
 		// System.out.println(rootPath+filePath);
+		String flag="上传成功,从Excel读取数据成功,添加到数据库成功";
+		File file = new File(rootPath + filePath);
 		try {
-			File file = new File(rootPath + filePath);
+			
 			mFile.transferTo(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag="上传失败";
+		}
+		
+		try {
 			courseList = importXls(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			 flag="上传成功,从Excel读取数据失败";
+		}
+		try {
 			courseDao.insertBatch(courseList);
 		} catch (Exception e) {
 			e.printStackTrace();
+			flag="上传成功,从Excel读取数据成功,添加到数据库失败";
+			
 		}
+		return flag;
 	}
 
 	public List<Course> importXls(File file) {

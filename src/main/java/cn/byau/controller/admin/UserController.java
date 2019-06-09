@@ -26,7 +26,12 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private LogInfoService logInfoService;
+	@RequestMapping("/toUpdatePassword")
+	// @ResponseBody
+	public String updatePasswordfirst() {
 
+		return "/admin/user/updatePassword.jsp";
+	}
 	
 
 
@@ -110,19 +115,7 @@ public class UserController {
 		
 		return result;
 	}
-
-	
-
-	
-
-	@RequestMapping("/updatePasswordPage")
-	// @ResponseBody
-	public String updatePasswordfirst() {
-
-		return "/WEB-INF/views/user/updatePassword.jsp";
-	}
-	
-	@RequestMapping("/updateUserPage")
+	@RequestMapping("/toUpdateUser")
 	// @ResponseBody
 	public String updateUserPage(HttpServletRequest request,HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -130,7 +123,7 @@ public class UserController {
 		request.setAttribute("user", user);
 		
 
-		return "/WEB-INF/views/user/update.jsp";
+		return "/admin/user/update.jsp";
 	}
 	
 

@@ -55,7 +55,7 @@ public class LogInfoController {
         System.out.println(userList);
         PageInfo<LogInfo> pageInfo=new PageInfo<LogInfo>(userList);
         map.addAttribute("pageInfo", pageInfo);
-        return "/WEB-INF/views/loginfo/list.jsp";
+        return "/admin/loginfo/list.jsp";
     }
 
 

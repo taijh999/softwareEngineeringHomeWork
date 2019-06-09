@@ -24,7 +24,7 @@
        alert("密码不一致");
        return;
         } 
-        $.ajax({type: "post", url: "${pageContext.request.contextPath}/user/updatePassword.action", dataType: "json", data:{"password":password,"oldPassword":oldPassword}, success: function (data) {
+        $.ajax({type: "post", url: "${pageContext.request.contextPath}/admin/user/updatePassword.action", dataType: "json", data:{"password":password,"oldPassword":oldPassword}, success: function (data) {
         alert(data.msg);  
        // alert("trtrtt");
         }

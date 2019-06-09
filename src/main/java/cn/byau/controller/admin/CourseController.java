@@ -169,13 +169,17 @@ public class CourseController {
 	}
 
 	@RequestMapping("/importFile")
-	public ModelAndView importFile(@RequestParam(value = "uploadFile") MultipartFile mFile, HttpServletRequest request,
+	@ResponseBody
+	public Result importFile(@RequestParam(value = "uploadFile") MultipartFile mFile, HttpServletRequest request,
 			HttpServletResponse response) {
 		String rootPath = request.getServletContext().getRealPath("/upload/");
-		courseService.importFile(mFile, rootPath);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:listByPage.action");
-		return mv;
+		Result result = new Result();
+	   String flag=	courseService.importFile(mFile, rootPath);
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("redirect:listByPage.action");
+	   result.setMsg(flag);
+	   return result;	
+	//return mv;
 	}
 
 	@RequestMapping("/exportFile")

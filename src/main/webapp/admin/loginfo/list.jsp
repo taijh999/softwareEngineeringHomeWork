@@ -122,7 +122,7 @@
 
 
 					<td>${logInfo.logId}</td>
-					<td>${logInfo.userName}</td>
+					<td>${logInfo.user.userName}</td>
 					<td>${logInfo.loginTime}</td>
 
 

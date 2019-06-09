@@ -10,7 +10,7 @@ public class LogInfo {
     private String userId;
 
     private String loginTime;
-    private String userName;
+    private User user;
 	public Integer getLogId() {
 		return logId;
 	}
@@ -29,11 +29,17 @@ public class LogInfo {
 	public void setLoginTime(String loginTime) {
 		this.loginTime = loginTime;
 	}
-	public String getUserName() {
-		return userName;
+//	public String getUserName() {
+//		return userName;
+//	}
+//	public void setUserName(String userName) {
+//		this.userName = userName;
+//	}
+	public User getUser() {
+		return user;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 

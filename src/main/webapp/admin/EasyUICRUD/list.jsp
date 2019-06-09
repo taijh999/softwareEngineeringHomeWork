@@ -11,11 +11,11 @@
 	<meta name="keywords" content="jquery,ui,easy,easyui,web">
 	<meta name="description" content="easyui help you build your web page easily!">
 	<title>jQuery EasyUI CRUD Demo</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/demo/demo.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
 	<style type="text/css">
 		#fm{
 			margin:0;

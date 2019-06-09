@@ -15,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.pojo.Course;
 import cn.byau.pojo.CourseKind;
-import cn.byau.pojo.User;
 import cn.byau.service.CourseKindService;
 import cn.byau.util.Result;
 
