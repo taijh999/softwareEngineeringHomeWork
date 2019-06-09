@@ -27,7 +27,7 @@
 		<div class="div_from_aoto" style="width: 500px;">
 			<h3>欢迎使用课程管理系统</h3>
 
-			<FORM action="${pageContext.request.contextPath}/user/login.action"
+			<FORM action="${pageContext.request.contextPath}/login/login.action"
 				method="post">
 				<DIV class="control-group">
 					<label class="laber_from">用户名</label>

@@ -11,11 +11,11 @@
 	<meta name="keywords" content="jquery,ui,easy,easyui,web">
 	<meta name="description" content="easyui help you build your web page easily!">
 	<title>jQuery EasyUI CRUD Demo</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/demo/demo.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/admin/res/js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
 	<style type="text/css">
 		#fm{
 			margin:0;
@@ -43,7 +43,7 @@
 		function newCourseKind(){
 			$('#dlg').dialog('open').dialog('setTitle','新建分类');
 			$('#fm').form('clear');
-			url = '${pageContext.request.contextPath}/courseKind/save.action';
+			url = '${pageContext.request.contextPath}/admin/courseKind/save.action';
 		}
 		function edit(){
 			var row = $('#dg').datagrid('getSelected');
@@ -51,7 +51,7 @@
 			if (row){
 				$('#dlg').dialog('open').dialog('setTitle','编辑分类');
 				$('#fm').form('load',row);
-				url = '${pageContext.request.contextPath}/courseKind/update.action'
+				url = '${pageContext.request.contextPath}/admin/courseKind/update.action'
 			}
 		}
 		function save(){
@@ -80,7 +80,7 @@
 			if (row){
 				$.messager.confirm('确认对话框','确定要删除分类吗?',function(r){
 					if (r){
-						$.post('${pageContext.request.contextPath}/courseKind/delete.action',{courseKindId:row.kindId},function(result){
+						$.post('${pageContext.request.contextPath}/admin/courseKind/delete.action',{courseKindId:row.kindId},function(result){
 							if (result.msg=="OK"){
 								$('#dg').datagrid('reload');	// reload the user data
 							} else {
@@ -104,7 +104,7 @@
 	</div>
 	
 	<table id="dg" title="分类管理" class="easyui-datagrid" style="width:700px;height:400px"
-			url="${pageContext.request.contextPath}/courseKind/getDataGrid.action"
+			url="${pageContext.request.contextPath}/admin/courseKind/getDataGrid.action"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true" singleSelect="true">
 		<thead>

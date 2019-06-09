@@ -25,7 +25,7 @@ import cn.byau.util.Result;
  * Created by tjh on 2017/5/13.
  */
 @Controller
-@RequestMapping("/courseKind")
+@RequestMapping("/admin/courseKind")
 public class CourseKindController {
 
 	@Resource(name = "courseKindService")
@@ -33,7 +33,7 @@ public class CourseKindController {
 
 	@RequestMapping("/list")
 	public ModelAndView list(HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("/WEB-INF/views/coursekind/list.jsp");
+		ModelAndView mv = new ModelAndView("/admin/coursekind/list.jsp");
 		mv.addObject("list", courseKindService.list());
 		return mv;
 	}
@@ -42,7 +42,7 @@ public class CourseKindController {
 	public ModelAndView getBykindId(HttpServletRequest request, HttpServletResponse response) {
 		String kindId = request.getParameter("kindId");
 		System.out.println(kindId);
-		ModelAndView mv = new ModelAndView("/WEB-INF/views/coursekind/getByKindId.jsp");
+		ModelAndView mv = new ModelAndView("/admin/coursekind/getByKindId.jsp");
 		mv.addObject("courseKind", courseKindService.getByKindId(kindId));
 		
 		return mv;

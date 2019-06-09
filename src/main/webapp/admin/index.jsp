@@ -36,11 +36,11 @@
                     <ul>
                         
                                 
-                                <li><a href="${pageContext.request.contextPath}/courseKind/list.action" target="menuFrame">
+                                <li><a href="${pageContext.request.contextPath}/admin/courseKind/list.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>显示课程分类</a>
                         </li>
                         
-                        <li><a href="${pageContext.request.contextPath}/EasyUICRUD/list.jsp" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/admin/EasyUICRUD/list.jsp" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>按JqueryUI显示分类</a>
                         </li>
 
@@ -55,7 +55,7 @@
                  <li class="childUlLi">
                     <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/course/listByPage.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/admin/course/listByPage.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>显示全部记录</a>
                         </li>
                                 
@@ -73,13 +73,13 @@
                 <li class="childUlLi">
                     <a href="#"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>用户管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/user/updatePasswordPage.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/admin/user/updatePasswordPage.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>修改密码</a></li>
                                  <li><a href="${pageContext.request.contextPath}/user/updateUserPage.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>用户信息修改</a></li>
 
 
-                        <li><a href="${pageContext.request.contextPath}/log/list.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/admin/log/list.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>查看日志</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/logout.action"><i class="glyph-icon icon-chevron-right"></i>退出登录</a></li>
 
@@ -98,7 +98,7 @@
             </div>
             <div class="mian_content">
                  <div id="page_content">
-                    <iframe id="menuFrame" name="menuFrame" src="${pageContext.request.contextPath}/user/welcome.action" style="overflow:visible;"
+                    <iframe id="menuFrame" name="menuFrame" src="welcome.jsp" style="overflow:visible;"
                             scrolling="yes" frameborder="no" width="100%" height="100%"></iframe>
                 </div>
             </div>

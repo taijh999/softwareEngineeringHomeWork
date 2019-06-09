@@ -45,7 +45,7 @@
 			alert("每次只能修改一个，请重新选择");
 		} else {
 			console.info(v);
-			window.location.href = "${pageContext.request.contextPath}/course/updatePage.action?courseId="
+			window.location.href = "${pageContext.request.contextPath}/admin/course/toUpdate.action?courseId="
 					+ v;
 		}
 	}
@@ -68,7 +68,7 @@
 			$
 					.ajax({
 						type : "post",
-						url : "${pageContext.request.contextPath}/course/deleteBatch.action",
+						url : "${pageContext.request.contextPath}/admin/course/deleteBatch.action",
 						dataType : "json",
 						data : {
 							"courseIds" : s
@@ -101,7 +101,7 @@
 		</ul>
 	</div>
 	<form
-		action="${pageContext.request.contextPath}/course/listByPage.action"
+		action="${pageContext.request.contextPath}/admin/course/listByPage.action"
 		method="post" id="f1" class="form-inline">
 		<div class="row alert alert-info form-inline"
 			style="margin: 0px; padding: 5px;">
@@ -110,14 +110,14 @@
 					name="courseId" placeholder="请输入课程编号" />
 			</div>
 			<input type="submit" value="查询课程" class="btn btn-success" /> <a
-				href="${pageContext.request.contextPath}/course/savePage.action"
+				href="${pageContext.request.contextPath}/admin/course/toSave.action"
 				class="btn btn-info">添加课程</a> <input type="button" id="upd"
 				value="修改课程" class="btn btn-info" onclick="updateCourse()" /> <input
 				type="button" id="del" value="删除课程" class="btn btn-danger"
 				onclick="deleteCourse()" /> <a
-				href="${pageContext.request.contextPath}/course/uploadPage.action"
+				href="${pageContext.request.contextPath}/admin/course/toUpload.action"
 				class="btn btn-info">导入课程</a> <a
-				href="${pageContext.request.contextPath}/course/exportFile.action"
+				href="${pageContext.request.contextPath}/admin/course/exportFile.action"
 				class="btn btn-info">导出课程</a>
 
 		</div>

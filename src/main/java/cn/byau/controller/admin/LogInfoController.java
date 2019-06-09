@@ -22,7 +22,7 @@ import cn.byau.service.LogInfoService;
  * Created by tjh on 2017/5/13.
  */
 @Controller
-@RequestMapping("/log")
+@RequestMapping("/admin/log")
 public class LogInfoController {
 
 	@Resource(name = "logInfoService")

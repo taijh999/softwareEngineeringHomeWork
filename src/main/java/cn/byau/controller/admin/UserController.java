@@ -1,18 +1,14 @@
 package cn.byau.controller.admin;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -20,11 +16,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import cn.byau.pojo.User;
 import cn.byau.service.LogInfoService;
 import cn.byau.service.UserService;
-import cn.byau.util.CommonUtils;
 import cn.byau.util.Result;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
 	@Autowired
@@ -32,40 +27,7 @@ public class UserController {
 	@Autowired
 	private LogInfoService logInfoService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String userName, String password, HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		HttpSession session = request.getSession();
-
-		map.put("userName", userName);
-		map.put("password", password);
-        String r1=""; 
-		User user = userService.getUserByUserNameAndPassword(map);
-		if (user != null) {
-		if (user.getRoleId().equals(CommonUtils.ADMIN_ROLE)) {
-			session.setAttribute("user", user);
-			session.setAttribute("loginFlag", "adminLogin");
-
-			r1= "redirect:admin/index.action";
-		} else if (user.getRoleId().equals(CommonUtils.USER_ROlE)){
-			session.setAttribute("user", user);
-			session.setAttribute("loginFlag", "userLogin");
-		    
-			r1 ="redirect:index.action";
-		}
-		}else {
-			 //session.setAttribute("msg", "用户名或密码错误");
-			r1="redirect:loginPage.action";
-		}
-		
-		
-		   
-			return r1;
-			// response.sendRedirect("jsp/index.jsp");
-		
-			
-		}
+	
 
 
 
@@ -151,14 +113,7 @@ public class UserController {
 
 	
 
-	@RequestMapping("/welcome")
 	
-	public void welcome(HttpServletResponse response) throws IOException {
-		response.setCharacterEncoding("UTF-8");
-
-		response.getWriter().write("<h1>欢迎使用本系统</h1>");
-		
-	}
 
 	@RequestMapping("/updatePasswordPage")
 	// @ResponseBody
@@ -179,27 +134,5 @@ public class UserController {
 	}
 	
 
-	/**
-	 * 退出登录
-	 */
-	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session) {
-		// 清除Session
-		session.invalidate();
-		// 重定向到登录页面的跳转方法
-		return "redirect:loginPage.action";
-	}
-
-	@RequestMapping(value = "/admin/index")
-	public String index(HttpSession session) {
-			return "/WEB-INF/views/index.jsp";
-	}
-
-	/**
-	 * 向用户登陆页面跳转
-	 */
-	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-	public String loginPage() {
-		return "/WEB-INF/views/login.jsp";
-	}
+	
 }
