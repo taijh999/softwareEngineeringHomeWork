@@ -5,35 +5,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>导入</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/bootstrap.min.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/res/js/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/res/js/bootstrap.min.js"></script>
     
-    <script type="text/javascript">
-    function doUpload() {  
-        var formData = new FormData($("#myform"));  
-        $.ajax({  
-             url: '${pageContext.request.contextPath}/admin/course/importFile.action' ,  
-             type: 'POST',  
-             data: formData,  
-             async: false,  
-             cache: false,  
-             contentType: false,  
-             processData: false,  
-             success: function (data) {  
-                 alert(data.msg);  
-             }
-             
-        });  
-   }
-    </script>
+    
 </head>
 <body>
-    <form id="myform"  enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/admin/course/importFile.action" 
+    method="post" enctype="multipart/form-data">
         文件：<input type="file" name="uploadFile"/>
         <br></br>
-        <input type="button" onclick="doUpload()" value="提交" />
+        <input type="submit" value="导入"/>${msg} 
        
     </form>    
 </body>
