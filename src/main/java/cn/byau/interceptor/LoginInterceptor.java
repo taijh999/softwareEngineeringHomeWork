@@ -28,7 +28,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				|| "userLogin".equals(loginFlag) && requestURI.startsWith(path + "/user")) {
 			return true;
 		} else {
-			request.setAttribute("msg", "请先登录");
+			//session.setAttribute("msg", "请先登录");
 			response.sendRedirect(path + "/login/toLogin.action");// 重定向
 			return false;
 		}

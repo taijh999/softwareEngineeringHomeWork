@@ -31,51 +31,24 @@
         <!--菜单-->
         <div class="layout_left_menu">
             <ul id="menu">
-                <li class="childUlLi">
-                    <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程分类管理</a>
-                    <ul>
-                                <li><a href="${pageContext.request.contextPath}/admin/courseKind/list.action" target="menuFrame">
-                                <i class="glyph-icon icon-chevron-right"></i>显示课程分类</a>
-                        </li>
-                        
-                        <li><a href="${pageContext.request.contextPath}/admin/EasyUICRUD/list.jsp" target="menuFrame">
-                                <i class="glyph-icon icon-chevron-right"></i>按JqueryUI显示分类</a>
-                        </li>
-                    </ul>
-                </li>
+               
                 
                  <li class="childUlLi">
                     <a href="#"  target="menuFrame"><i class="glyph-icon icon-home"></i>课程管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/admin/course/listByPage.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/user/course/listByPage.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>显示全部记录</a>
                         </li>
                     </ul>
                 </li>
-                
+               
                 <li class="childUlLi">
-                    <a href="#"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>用户管理</a>
-                    <ul>
-                        
-                                 <li><a href="${pageContext.request.contextPath}/admin/user/listByPage.action" target="menuFrame">
-                                <i class="glyph-icon icon-chevron-right"></i>显示全部信息</a></li>
-                        
-                    </ul>
-                </li>
-                <li class="childUlLi">
-                    <a href="#"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>日志管理</a>
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/admin/log/listByPage.action" target="menuFrame">
-                                <i class="glyph-icon icon-chevron-right"></i>查看日志</a></li>
-                    </ul>
-                </li>
-                
-                 <li class="childUlLi">
                     <a href="#"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>系统管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/admin/user/toUpdatePassword.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/user/user/toUpdatePassword.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>修改密码</a></li>
-                                
+                                 <li><a href="${pageContext.request.contextPath}/user/user/toUpdateUser.action" target="menuFrame">
+                                <i class="glyph-icon icon-chevron-right"></i>用户信息修改</a></li>
                         <li><a href="${pageContext.request.contextPath}/login/logout.action"><i class="glyph-icon icon-chevron-right"></i>退出登录</a></li>
                     </ul>
                 </li>

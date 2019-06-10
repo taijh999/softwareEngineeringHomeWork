@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.github.pagehelper.PageInfo;
 
 import cn.byau.pojo.Course;
@@ -26,7 +25,7 @@ import cn.byau.util.Result;
 /**
  * Created by tjh on 2017/5/13.
  */
-@Controller
+@Controller("adminCourseController")
 @RequestMapping("/admin/course")
 public class CourseController {
 
@@ -62,37 +61,21 @@ public class CourseController {
 	/**
 	 * 跳转到分页显示页面
 	 * 
-	 * @param pageNum
-	 *            为当前页号
-	 * @param courseId
-	 *            为查询的课程编号
+	 * @param pageNum  为当前页号
+	 * @param courseId 为查询的课程编号
 	 * @param request
 	 * @param response
 	 * @return
 	 */
 	@RequestMapping("/listByPage")
-	public String listByPage(
-			@RequestParam(defaultValue="1",required=false) Integer pageNum, 
-			@RequestParam(defaultValue="5",required=false) Integer pageSize,
-			@RequestParam(defaultValue="",required=false)  String courseId, 
-			HttpServletRequest request,
+	public String listByPage(@RequestParam(defaultValue = "1", required = false) Integer pageNum,
+			@RequestParam(defaultValue = "5", required = false) Integer pageSize,
+			@RequestParam(defaultValue = "", required = false) String courseId, HttpServletRequest request,
 			HttpServletResponse response) {
-		//ModelAndView mv = new ModelAndView();
-		//mv.setViewName("/admin/course/list.jsp");
+		PageInfo<Course> pageInfo = courseService.listByPage(pageNum, pageSize, courseId);
+		request.setAttribute("pageInfo", pageInfo);
 
-		
-
-		//List<Course> list = courseService.listByPage();
-		//request.setAttribute("courseList", list);
-        
-		
-		
-		
-        PageInfo<Course> pageInfo=courseService.listByPage(pageNum, pageSize, courseId);
-        request.setAttribute("pageInfo", pageInfo);
-		
 		request.setAttribute("courseId", courseId);
-		//return mv;
 		return "/admin/course/list.jsp";
 
 	}
@@ -107,20 +90,16 @@ public class CourseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public Result save(Course course) {
-		
-		
 		Result result = new Result();
-		try{
+		try {
 			courseService.save(course);
-     		result.setMsg("OK");
-		}catch(Exception e){
-	        result.setMsg("FAIL"); 		
+			result.setMsg("OK");
+		} catch (Exception e) {
+			result.setMsg("FAIL");
 		}
 		return result;
-	
 
 	}
-
 
 	/**
 	 * 跳转到更新页面
@@ -142,53 +121,43 @@ public class CourseController {
 
 		return mv;
 	}
+	
 
 	@RequestMapping("/update")
 	@ResponseBody
 	public Result update(Course course) {
 		Result result = new Result();
-		try{
+		try {
 			courseService.update(course);
-     		result.setMsg("OK");
-		}catch(Exception e){
-	        result.setMsg("FAIL"); 		
+			result.setMsg("OK");
+		} catch (Exception e) {
+			result.setMsg("FAIL");
 		}
 		return result;
-		
 
 	}
-	
 
 	@RequestMapping("/deleteBatch")
 	@ResponseBody
 	public Result deleteBatch(String courseIds) {
 		Result result = new Result();
 		String ids[] = courseIds.split(",");
-		List<String> idList=Arrays.asList(ids); 
+		List<String> idList = Arrays.asList(ids);
 		courseService.deleteBatch(idList);
 		result.setMsg("OK");
 		return result;
 	}
 
 	@RequestMapping("/importFile")
-	//@ResponseBody
-	public String importFile(@RequestParam(value = "uploadFile") MultipartFile mFile, 
-			HttpServletRequest request,
+	public String importFile(@RequestParam(value = "uploadFile") MultipartFile mFile, HttpServletRequest request,
 			HttpServletResponse response) {
 		String rootPath = request.getServletContext().getRealPath("/upload/");
-		//Result result = new Result();
-	    String msg=courseService.importFile(mFile, rootPath);
-	    request.setAttribute("msg", msg);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("redirect:listByPage.action");
-	   return  "/admin/course/upload.jsp";
-	  // return result;	
-	//return mv;
+		String msg = courseService.importFile(mFile, rootPath);
+		request.setAttribute("msg", msg);
+		return "/admin/course/upload.jsp";
 	}
 
 	@RequestMapping("/exportFile")
-	
-	
 	public ModelAndView exportFile(HttpServletResponse response) {
 		courseService.exportFile(response);
 
