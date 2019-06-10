@@ -64,7 +64,7 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/admin/user/toUpdatePassword.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>修改密码</a></li>
-                                 <li><a href="${pageContext.request.contextPath}/user/toUpdateUser.action" target="menuFrame">
+                                 <li><a href="${pageContext.request.contextPath}/admin/user/toUpdateUser.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>用户信息修改</a></li>
                         <li><a href="${pageContext.request.contextPath}/login/logout.action"><i class="glyph-icon icon-chevron-right"></i>退出登录</a></li>
                     </ul>

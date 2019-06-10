@@ -5,11 +5,11 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -87,18 +87,18 @@ public class CourseService {
 		courseDao.update(course);
 	}
 
-	public void deleteBatch(String ids[]) {
-		courseDao.deleteBatch(ids);
+	public void deleteBatch(List<String> idList) {
+		courseDao.deleteBatch(idList);
 	}
 
 	public String importFile(MultipartFile mFile, String rootPath) {
 		List<Course> courseList = new ArrayList<Course>();
 
 		String fileName = mFile.getOriginalFilename();
-		String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-		String ym = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		String filePath = ym + fileName;
-		// System.out.println(rootPath+filePath);
+		String extFileName = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		String filePath = UUID.randomUUID().toString()+extFileName;
+		//String filePath = ym + fileName;
+	    System.out.println(rootPath+filePath);
 		String flag="上传成功,从Excel读取数据成功,添加到数据库成功";
 		File file = new File(rootPath + filePath);
 		try {

@@ -35,6 +35,7 @@ public class LoginController {
         String r1=""; 
 		User user = userService.getUserByUserNameAndPassword(map);
 		if (user != null) {
+			logInfoService.save(user.getUserId());
 		if (user.getRoleId().equals(CommonUtils.ADMIN_ROLE)) {
 			session.setAttribute("user", user);
 			session.setAttribute("loginFlag", "adminLogin");

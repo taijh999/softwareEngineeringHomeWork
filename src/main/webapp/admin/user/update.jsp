@@ -10,7 +10,7 @@
 	function updateUser() {
 		$.ajax({
 		    type : 'POST',
-		    url : '${pageContext.request.contextPath}/user/update.action',
+		    url : '${pageContext.request.contextPath}/admin/user/updateUser.action',
 		    data :  new FormData(document.getElementById("update_user_form")),
 		    async : false,
 		    cache : false,

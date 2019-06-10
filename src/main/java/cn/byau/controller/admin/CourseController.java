@@ -1,5 +1,6 @@
 package cn.byau.controller.admin;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -163,7 +164,8 @@ public class CourseController {
 	public Result deleteBatch(String courseIds) {
 		Result result = new Result();
 		String ids[] = courseIds.split(",");
-		courseService.deleteBatch(ids);
+		List<String> idList=Arrays.asList(ids); 
+		courseService.deleteBatch(idList);
 		result.setMsg("OK");
 		return result;
 	}

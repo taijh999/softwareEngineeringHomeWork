@@ -57,10 +57,10 @@ public class UserController {
 		return result;
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping("/updateUser")
 	@ResponseBody
 	
-	public Result handleFormUpload( HttpServletRequest request,
+	public Result updateUser( HttpServletRequest request,
 	
 	User user) {
 		// 判断所上传文件是否存在
@@ -101,20 +101,20 @@ public class UserController {
 	}
 	
 
-	public Result update(User user) {
-		Result result = new Result();
-
-		
-			try {
-				userService.update(user);
-				result.setMsg("修改成功");
-			} catch (Exception e) {
-				// TODO: handle exception
-				result.setMsg("修改失败");
-			}
-		
-		return result;
-	}
+//	public Result update(User user) {
+//		Result result = new Result();
+//
+//		
+//			try {
+//				userService.update(user);
+//				result.setMsg("修改成功");
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				result.setMsg("修改失败");
+//			}
+//		
+//		return result;
+//	}
 	@RequestMapping("/toUpdateUser")
 	// @ResponseBody
 	public String updateUserPage(HttpServletRequest request,HttpSession session) {
