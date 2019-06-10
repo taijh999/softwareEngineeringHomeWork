@@ -1,7 +1,5 @@
 package cn.byau.controller.admin;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.byau.pojo.CourseKind;
 import cn.byau.pojo.LogInfo;
 import cn.byau.service.LogInfoService;
 
@@ -28,16 +27,16 @@ public class LogInfoController {
 	@Resource(name = "logInfoService")
 	private LogInfoService logInfoService;
 
-	@RequestMapping("/list")
+	@RequestMapping("/listByPage")
 	public String pageList(ModelMap map,
-			@RequestParam(defaultValue="1",required=false) Integer pageNo,
+			@RequestParam(defaultValue="1",required=false) Integer pageNum,
 			@RequestParam(defaultValue="5",required=false)  Integer pageSize,
 			@RequestParam(defaultValue="",required=false)  String startTime,   
 			@RequestParam(defaultValue="",required=false)  String endTime   
 			)throws Exception{
        
         //分页查询
-        PageHelper.startPage(pageNo, pageSize);
+        //PageHelper.startPage(pageNo, pageSize);
         HashMap<String,String> hm=new HashMap<>();
 //        if(!startTime.equals("")) {
 //        hm.put("startTime", new SimpleDateFormat("YYYY-MM-dd HH:mm").parse(startTime));
@@ -48,12 +47,13 @@ public class LogInfoController {
         hm.put("startTime",startTime);
         hm.put("endTime",endTime);
         
-        System.out.println("xxxx="+startTime);
-        System.out.println("yyyyyyyyyyyyyy"+endTime);
+        //System.out.println("xxxx="+startTime);
+        //System.out.println("yyyyyyyyyyyyyy"+endTime);
         
-        List<LogInfo> userList = logInfoService.list(hm);//获取所有用户信息
-        System.out.println(userList);
-        PageInfo<LogInfo> pageInfo=new PageInfo<LogInfo>(userList);
+        //List<LogInfo> userList = logInfoService.list(hm);//获取所有用户信息
+        //System.out.println(userList);
+        //PageInfo<LogInfo> pageInfo=new PageInfo<LogInfo>(userList);
+        PageInfo<LogInfo> pageInfo=logInfoService.listByPage(pageNum, pageSize,hm);
         map.addAttribute("pageInfo", pageInfo);
         return "/admin/loginfo/list.jsp";
     }

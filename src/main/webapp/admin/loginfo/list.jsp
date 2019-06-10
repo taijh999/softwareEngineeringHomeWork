@@ -78,7 +78,7 @@
 
 		</ul>
 	</div>
-	<form action="${pageContext.request.contextPath}/log/list.action" method="post">
+	<form action="${pageContext.request.contextPath}/admin/log/listByPage.action" method="post">
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="form-group">
@@ -132,16 +132,16 @@
 		</table>
 	</div>
 	<p>
-		当前 ${pageInfo.pageNum }页,总${pageInfo.pages } 页,总 ${pageInfo.total }
-		条记录 <a href="list.action?pageNo=${pageInfo.firstPage}">第一页</a>
+		当前 ${pageInfo.pageNum }页,总${pageInfo.pages } 页,总 ${pageInfo.total}
+		条记录 <a href="listByPage.action?pageNum=${pageInfo.firstPage}">第一页</a>
 		<c:if test="${pageInfo.hasPreviousPage }">
-			<a href="list.action?pageNo=${pageInfo.pageNum-1}">上一页</a>
+			<a href="listByPage.action?pageNum=${pageInfo.pageNum-1}">上一页</a>
 		</c:if>
 
 		<c:if test="${pageInfo.hasNextPage }">
-			<a href="list.action?pageNo=${pageInfo.pageNum+1}">下一页</a>
+			<a href="listByPage.action?pageNum=${pageInfo.pageNum+1}">下一页</a>
 		</c:if>
 
-		<a href="list.action?pageNo=${pageInfo.lastPage}">最后页</a>
+		<a href="listByPage.action?pageNum=${pageInfo.lastPage}">最后页</a>
 </body>
 </html>

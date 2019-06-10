@@ -55,7 +55,7 @@
                 <li class="childUlLi">
                     <a href="#"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>日志管理</a>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/admin/log/list.action" target="menuFrame">
+                        <li><a href="${pageContext.request.contextPath}/admin/log/listByPage.action" target="menuFrame">
                                 <i class="glyph-icon icon-chevron-right"></i>查看日志</a></li>
                     </ul>
                 </li>

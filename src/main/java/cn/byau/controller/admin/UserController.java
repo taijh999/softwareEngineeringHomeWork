@@ -28,7 +28,7 @@ public class UserController {
 	private LogInfoService logInfoService;
 	@RequestMapping("/toUpdatePassword")
 	// @ResponseBody
-	public String updatePasswordfirst() {
+	public String toUpdatePassword() {
 
 		return "/admin/user/updatePassword.jsp";
 	}

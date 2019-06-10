@@ -6,8 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.byau.pojo.User;
-
 /**
  * 登录拦截器
  */

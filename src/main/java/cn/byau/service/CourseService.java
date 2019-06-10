@@ -59,8 +59,16 @@ public class CourseService {
 	public List<Course> listByPage(String courseId) {
 		return courseDao.listByPage(courseId);
 	}
-
+	/**
+     *   这个方法中用到了分页插件pagehelper
+     *   很简单，只需要在service层传入参数，然后将参数传递给一个插件的一个静态方法即可；
+     * @param pageNum 开始页数
+     * @param pageSize 每页显示的数据条数
+     * @param courseId 查询的课程编号
+     * @return
+     */
 	public PageInfo<Course> listByPage(Integer pageNum, Integer pageSize, String courseId) {
+		 //将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
 		List<Course> list = courseDao.listByPage(courseId);
 		PageInfo<Course> pageInfo = new PageInfo<>(list);
