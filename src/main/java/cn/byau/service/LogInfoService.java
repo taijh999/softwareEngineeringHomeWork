@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.dao.LogInfoMapper;
-import cn.byau.pojo.LogInfo;
+import cn.byau.dao.LogInfoDAO;
+import cn.byau.entity.LogInfo;
 
 @Service("logInfoService")
 @Transactional
 public class LogInfoService {
 	@Autowired
-	private LogInfoMapper logInfoMapper;
+	private LogInfoDAO logInfoDAO;
 
 	public void save(int userId) {
 		Date date = new Date();
@@ -27,7 +27,7 @@ public class LogInfoService {
 		LogInfo logInfo = new LogInfo();
 		logInfo.setUserId(userId + "");
 		logInfo.setLoginTime(sDate);
-		logInfoMapper.save(logInfo);
+		logInfoDAO.save(logInfo);
 	}
 
 
@@ -44,7 +44,7 @@ public class LogInfoService {
 	public PageInfo<LogInfo> listByPage(Integer pageNum, Integer pageSize,HashMap hm) {
 		 //将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
-		List<LogInfo> list = logInfoMapper.list(hm);
+		List<LogInfo> list = logInfoDAO.list(hm);
 		PageInfo<LogInfo> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}

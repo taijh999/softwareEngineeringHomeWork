@@ -17,8 +17,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.byau.dao.CourseMapper;
-import cn.byau.pojo.Course;
+import cn.byau.dao.CourseDAO;
+import cn.byau.entity.Course;
 import cn.byau.service.CourseService;
 
 /** 声明用的是Spring的测试类 **/
@@ -37,7 +37,7 @@ public class CourseServiceTest {
     @Resource
     private CourseService courseService;
     @Resource
-    private CourseMapper courseMapper;
+    private CourseDAO courseMapper;
     
        
     

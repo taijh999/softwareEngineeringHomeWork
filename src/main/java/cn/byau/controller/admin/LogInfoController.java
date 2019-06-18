@@ -3,6 +3,7 @@ package cn.byau.controller.admin;
 import java.util.HashMap;
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.pojo.LogInfo;
+import cn.byau.entity.LogInfo;
 import cn.byau.service.LogInfoService;
 
 /**
@@ -20,7 +21,7 @@ import cn.byau.service.LogInfoService;
 @RequestMapping("/admin/log")
 public class LogInfoController {
 
-	@Resource(name = "logInfoService")
+	@Autowired
 	private LogInfoService logInfoService;
 
 	@RequestMapping("/listByPage")

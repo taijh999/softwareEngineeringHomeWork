@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import cn.byau.pojo.User;
+
+import cn.byau.entity.User;
 import cn.byau.service.UserService;
 import cn.byau.util.Result;
 

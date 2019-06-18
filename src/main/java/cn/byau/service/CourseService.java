@@ -2,6 +2,7 @@ package cn.byau.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
@@ -33,31 +34,48 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.dao.CourseMapper;
-import cn.byau.pojo.Course;
+import cn.byau.dao.CourseDAO;
+import cn.byau.entity.Course;
+import cn.byau.util.CommonUtils;
 
 /**
  * Created by tjh on 2017/5/13.
  */
-@Service("CourseService")
+@Service("courseService")
 public class CourseService {
+	
+	//以下注释的代码是获取上传的excel的另一种方法
+	
+	//private static final String EXCEL_XLS = "xls";
+    //private static final String EXCEL_XLSX = "xlsx";
+ 
+   
+//    //判断版本获取Wordboook
+//    private  Workbook getWorkbook(InputStream in, String fileName) throws IOException {
+//        Workbook wbook = null;
+//        if (fileName.endsWith(EXCEL_XLS)) {
+//            wbook = new HSSFWorkbook(in);
+//        } else if (fileName.endsWith(EXCEL_XLSX)) {
+//            wbook = new XSSFWorkbook(in);
+//        }
+//        return wbook;
+//    }
+//    public String getExcelData(MultipartFile mfile, String fileName) throws IOException {{
+//        
+//            Workbook workbook = getWorkbook(mfile.getInputStream(), fileName);
+//            		return "";
+//    。。。。。
+//    }
+
+
 
 	@Autowired
-	private CourseMapper courseDao;
+	private CourseDAO courseDAO;
 
-//	public int pageCount(String courseId) {
-//		int rowCount = courseDao.count(courseId);
-//		int count = 0;
-//		if (rowCount % 5 == 0) {
-//			count = rowCount / 5;
-//		} else {
-//			count = rowCount / 5 + 1;
-//		}
-//		return count;
-//	}
+
 
 	public List<Course> listByPage(String courseId) {
-		return courseDao.listByPage(courseId);
+		return courseDAO.listByPage(courseId);
 	}
 	/**
      *   这个方法中用到了分页插件pagehelper
@@ -70,25 +88,25 @@ public class CourseService {
 	public PageInfo<Course> listByPage(Integer pageNum, Integer pageSize, String courseId) {
 		 //将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
-		List<Course> list = courseDao.listByPage(courseId);
+		List<Course> list = courseDAO.listByPage(courseId);
 		PageInfo<Course> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}
 
 	public void save(Course course) {
-		courseDao.save(course);
+		courseDAO.save(course);
 	}
 
 	public Course getById(String courseId) {
-		return courseDao.getById(courseId);
+		return courseDAO.getById(courseId);
 	}
 
 	public void update(Course course) {
-		courseDao.update(course);
+		courseDAO.update(course);
 	}
 
 	public void deleteBatch(List<String> idList) {
-		courseDao.deleteBatch(idList);
+		courseDAO.deleteBatch(idList);
 	}
 
 	public String importFile(MultipartFile mFile, String rootPath) {
@@ -96,7 +114,7 @@ public class CourseService {
 
 		String fileName = mFile.getOriginalFilename();
 		String extFileName = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-		String filePath = UUID.randomUUID().toString()+extFileName;
+		String filePath = CommonUtils.uuid()+extFileName;
 		//String filePath = ym + fileName;
 	    System.out.println(rootPath+filePath);
 		String flag="上传成功,从Excel读取数据成功,添加到数据库成功";
@@ -117,7 +135,7 @@ public class CourseService {
 			 flag="上传成功,从Excel读取数据失败";
 		}
 		try {
-			courseDao.insertBatch(courseList);
+			courseDAO.insertBatch(courseList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			flag="上传成功,从Excel读取数据成功,添加到数据库失败";
@@ -316,7 +334,7 @@ public class CourseService {
 	 * @param xSheet
 	 */
 	private void setSheetContent(XSSFWorkbook xWorkbook, XSSFSheet xSheet) {
-		List<Course> courseList = courseDao.list();
+		List<Course> courseList = courseDAO.list();
 		CellStyle cs = xWorkbook.createCellStyle();
 		cs.setWrapText(true);
 

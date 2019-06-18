@@ -2,10 +2,9 @@ package cn.byau.dao;
 
 import java.util.List;
 
+import cn.byau.entity.Course;
 
-import cn.byau.pojo.Course;
-
-public interface CourseMapper {
+public interface CourseDAO {
 //	/**
 //	 * 根据 courseId 删除一条记录
 //	 * @param courseId

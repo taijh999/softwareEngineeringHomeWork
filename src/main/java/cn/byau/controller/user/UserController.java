@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import cn.byau.pojo.User;
+import cn.byau.entity.User;
 import cn.byau.service.LogInfoService;
 import cn.byau.service.UserService;
 import cn.byau.util.Result;

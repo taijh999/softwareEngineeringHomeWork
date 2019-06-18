@@ -2,10 +2,10 @@ package cn.byau.dao;
 
 import java.util.List;
 
-import cn.byau.pojo.Course;
-import cn.byau.pojo.CourseKind;
+import cn.byau.entity.Course;
+import cn.byau.entity.CourseKind;
 
-public interface CourseKindMapper {
+public interface CourseKindDAO {
 	List<CourseKind> list();
 
 	CourseKind getByKindId(String kindId);

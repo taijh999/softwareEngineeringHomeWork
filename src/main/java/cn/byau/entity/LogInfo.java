@@ -1,4 +1,4 @@
-package cn.byau.pojo;
+package cn.byau.entity;
 
 
 

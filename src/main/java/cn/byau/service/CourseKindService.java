@@ -1,16 +1,15 @@
 package cn.byau.service;
 
-import cn.byau.dao.CourseKindMapper;
-import cn.byau.pojo.Course;
-import cn.byau.pojo.CourseKind;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.byau.dao.CourseKindDAO;
+import cn.byau.entity.CourseKind;
 
 /**
  * Created by tjh on 2017/5/13.
@@ -19,29 +18,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CourseKindService {
 
     @Autowired
-    private CourseKindMapper courseKindDao;
+    private CourseKindDAO courseKindDAO;
 
     public List<CourseKind> list() {
-        return courseKindDao.list();
+        return courseKindDAO.list();
     }
     public CourseKind getByKindId(String kindId) {
-        return courseKindDao.getByKindId(kindId);
+        return courseKindDAO.getByKindId(kindId);
     }
     
     public void save(CourseKind courseKind) {
-    	courseKindDao.save(courseKind);
+    	courseKindDAO.save(courseKind);
 	}
 
 	
 
 	public void update(CourseKind courseKind) {
-		courseKindDao.update(courseKind);
+		courseKindDAO.update(courseKind);
 	}
 
 	
 
 	public void delete(String kindId) {
-		courseKindDao.delete(kindId);
+		courseKindDAO.delete(kindId);
 	}
 	/**
      *   这个方法中用到了分页插件pagehelper
@@ -54,7 +53,7 @@ public class CourseKindService {
 	public PageInfo<CourseKind> listByPage(Integer pageNum, Integer pageSize) {
 		 //将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
-		List<CourseKind> list = courseKindDao.list();
+		List<CourseKind> list = courseKindDAO.list();
 		PageInfo<CourseKind> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}

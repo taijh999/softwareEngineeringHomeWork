@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.byau.dao.CourseKindMapper">
+<mapper namespace="cn.byau.dao.CourseKindDAO">
 <!-- 	<resultMap id="BaseResultMap" type="CourseKind"> -->
 <!-- 		<id column="kind_id" property="kindId" jdbcType="VARCHAR" /> -->
 <!-- 		<result column="kind_name" property="kindName" jdbcType="VARCHAR" /> -->

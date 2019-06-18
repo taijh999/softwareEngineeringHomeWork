@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.pojo.CourseKind;
+import cn.byau.entity.CourseKind;
 import cn.byau.service.CourseKindService;
 import cn.byau.util.Result;
 
@@ -26,7 +27,7 @@ import cn.byau.util.Result;
 @RequestMapping("/admin/courseKind")
 public class CourseKindController {
 
-	@Resource(name = "courseKindService")
+	@Autowired
 	private CourseKindService courseKindService;
 
 	@RequestMapping("/list")

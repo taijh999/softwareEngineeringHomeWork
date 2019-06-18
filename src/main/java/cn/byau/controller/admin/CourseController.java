@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.pojo.Course;
-import cn.byau.pojo.CourseKind;
-
+import cn.byau.entity.Course;
+import cn.byau.entity.CourseKind;
 import cn.byau.service.CourseKindService;
 import cn.byau.service.CourseService;
 import cn.byau.util.Result;
@@ -29,9 +29,9 @@ import cn.byau.util.Result;
 @RequestMapping("/admin/course")
 public class CourseController {
 
-	@Resource(name = "CourseService")
+	@Autowired
 	private CourseService courseService;
-	@Resource(name = "courseKindService")
+	@Autowired
 	private CourseKindService courseKindService;
 
 	/**
@@ -149,6 +149,15 @@ public class CourseController {
 	}
 
 	@RequestMapping("/importFile")
+	/**
+	 * 
+	 * @param mFile
+	 * @param request
+	 * @param response
+	 * @return
+	 * MultipartFile 可以改为CommonsMultipartFile， MultipartFile 是接口,CommonsMultipartFile是实现类
+	 * springmvc.xml中的CommonsMultipartResolver可以产生CommonsMultipartFile对象
+	 */
 	public String importFile(@RequestParam(value = "uploadFile") MultipartFile mFile, HttpServletRequest request,
 			HttpServletResponse response) {
 		String rootPath = request.getServletContext().getRealPath("/upload/");

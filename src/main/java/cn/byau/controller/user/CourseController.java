@@ -5,12 +5,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageInfo;
 
-import cn.byau.pojo.Course;
+import cn.byau.entity.Course;
 import cn.byau.service.CourseService;
 
 /**
@@ -20,7 +21,7 @@ import cn.byau.service.CourseService;
 @RequestMapping("/user/course")
 public class CourseController {
 
-	@Resource(name = "CourseService")
+	@Autowired
 	private CourseService courseService;
 	
 	/**

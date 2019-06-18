@@ -1,7 +1,7 @@
 package cn.byau.service;
 
-import cn.byau.dao.UserMapper;
-import cn.byau.pojo.User;
+import cn.byau.dao.UserDAO;
+import cn.byau.entity.User;
 
 import java.util.Map;
 
@@ -15,15 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService {
 	@Autowired
-	private UserMapper userMapper;
+	private UserDAO userDAO;
 	
 	public User getUserByUserNameAndPassword(Map map){
-		return userMapper.getUserByUserNameAndPassword(map);				
+		return userDAO.getUserByUserNameAndPassword(map);				
 	}
 	public User getUserById(String id){
-		return userMapper.getUserById(id);				
+		return userDAO.getUserById(id);				
 	}
 	public int update(User user){
-		return userMapper.update(user);
+		return userDAO.update(user);
 	}
 }

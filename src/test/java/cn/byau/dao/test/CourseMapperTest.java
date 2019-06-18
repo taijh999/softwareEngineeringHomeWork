@@ -15,8 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.byau.dao.CourseMapper;
-import cn.byau.pojo.Course;
+import cn.byau.dao.CourseDAO;
+import cn.byau.entity.Course;
 /** 声明用的是Spring的测试类 **/
 @RunWith(SpringJUnit4ClassRunner.class)
 
@@ -30,7 +30,7 @@ import cn.byau.pojo.Course;
 //@TransactionConfiguration(transactionManager="transactionManager",defaultRollback=true)
 public class CourseMapperTest {
 	@Autowired
-	private CourseMapper courseDao;
+	private CourseDAO courseDao;
 	@Test
 	
 	public void testSave() {
